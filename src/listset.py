@@ -14,11 +14,17 @@ class ListSet(Generic[T]):
 
     def __init__(self, init: Iterable[T]) -> None:
         """Initialise set with init."""
-        ...  # FIXME
+        self.data = list(init)
 
     def __contains__(self, x: T) -> bool:
         """Test if x is in set."""
-        ...  # FIXME
+        bool=[]
+        for i in x:
+            if i in self.data:
+                bool.append(True)
+            else:
+                bool.append(False)
+        return bool
 
     def __bool__(self) -> bool:
         """
@@ -27,12 +33,29 @@ class ListSet(Generic[T]):
         A set is True if it is non-empty and False
         otherwise
         """
-        ...  # FIXME
-
+        if self.data==None:
+            return False
+        elif self.data==[]:
+            return False
+        return True
+    
     def add(self, x: T) -> None:
-        """Add x to the set."""
-        ...  # FIXME
-
-    def remove(self, x: T) -> None:
+       """Add x to the set."""
+       self.data.append(x)
+       return self.data
+    
+    def remove(self,x:T)->None:
         """Remove x from the set."""
-        ...  # FIXME
+        if x not in self.data:
+            return self.data
+        while x in self.data:
+            self.data.remove(x)
+        return self.data
+
+
+
+testname=ListSet([1,3,4,5,656,2,2,2,2,2])
+print(testname.__bool__())
+print(testname.__contains__([3,1,1]))
+print(testname.add(1))
+print(testname.remove(2))
